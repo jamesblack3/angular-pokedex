@@ -1,0 +1,12 @@
+<div>
+    <div>
+        <span class="pokemon-id">#{{response?.id}}</span>
+        <h2>{{name | titlecase}}</h2>
+    </div>
+    <ul>
+        <ng-container *ngFor="let pokemon_type of response?.types">
+            <li class="pokemon-type">{{pokemon_type.type.name | uppercase}}</li>
+        </ng-container>
+    </ul>
+</div>
+<img class="pokemon-sprite" src="{{response?.sprites?.front_default}}">
