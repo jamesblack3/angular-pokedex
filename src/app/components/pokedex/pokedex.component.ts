@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AllPokemonResponse } from '../../interfaces/all-pokemon-response';
+import { map } from 'rxjs';
 import { PokedexService } from '../../services/pokedex.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { PokedexService } from '../../services/pokedex.service';
   styleUrls: ['./pokedex.component.less']
 })
 export class PokedexComponent implements OnInit {
-  response: AllPokemonResponse | undefined;
+  response: any;
 
   constructor(private pokedexService: PokedexService) { }
 
@@ -18,6 +18,12 @@ export class PokedexComponent implements OnInit {
 
   getAllPokemon(): void {
     this.pokedexService.getAllPokemon()
+    .pipe(map(response => ({
+      count: response.count,
+      next: response.next,
+      previous: response.previous,
+      results: response.results
+    })))
     .subscribe(response => this.response = response);
   }
 }
