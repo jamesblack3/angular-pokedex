@@ -1,13 +1,19 @@
-<div class="basic-info">
-    <div class="name-and-id-container">
-        <span class="pokemon-id">#{{response?.id}}</span>
-        <img class="pokemon-icon" src="{{response?.icon}}">
-        <h2>{{response?.name | titlecase}}</h2>
-    </div>
-    <div class="pokemon-types">
-        <ng-container *ngFor="let pokemon_type of response?.types">
-            <span>{{pokemon_type.type.name | uppercase}}</span>
-        </ng-container>
-    </div>
-</div>
-<img class="pokemon-sprite" src="{{response?.sprite}}">
+<mat-card matRipple [id]="response?.name" [style.background-color]="typeColors.length == 1 ? typeColors[0] : ''"
+[style.background]="typeColors.length > 1 ? 'linear-gradient(45deg, ' + typeColors[0] + ', ' + typeColors[1] + ')' : ''">
+    <mat-card-title-group>
+        <!--Not sure why, but the div that gets generated cannot be selected, so manually making one instead-->
+        <div class="noselect">
+            <mat-card-title>
+                <span>#{{response?.id}}</span>
+                <img mat-card-avatar src="{{response?.icon}}">
+                <span>{{response?.name | titlecase}}</span>
+            </mat-card-title>
+            <mat-card-subtitle>
+                <ng-container *ngFor="let pokemon_type of response?.types">
+                    <span>{{pokemon_type.type.name | uppercase}}</span>
+                </ng-container>
+            </mat-card-subtitle>
+        </div>
+        <img mat-card-md-image src="{{response?.sprite}}" [draggable]="false" class="noselect">
+    </mat-card-title-group>
+</mat-card>

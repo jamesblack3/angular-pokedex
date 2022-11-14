@@ -1,6 +1,5 @@
-<div id="filter-container"></div>
-<div id="pokemon-container">
-    <ng-container *ngFor="let pokemon of response?.results">
-        <pokemon [url]="pokemon.url" [id]="pokemon.name"></pokemon>
-    </ng-container>
-</div>
+<mat-list>
+    <mat-list-item *ngFor="let pokemon of response?.results">
+        <pokemon [url]="pokemon.url"></pokemon>
+    </mat-list-item>
+<mat-list>

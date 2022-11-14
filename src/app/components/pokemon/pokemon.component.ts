@@ -31,14 +31,6 @@ export class PokemonComponent implements OnInit {
       for (let i = 0; i < response.types.length; i++) {
         this.typeColors[i] = TYPE_COLORS[response.types[i].type.name as keyof typeof TYPE_COLORS];
       }
-      var background = document.getElementById(response.name);
-      // Apply gradient to background, otherwise just set background color
-      if (this.typeColors.length > 1) {
-        let gradient: string = 'linear-gradient(90deg, ' + this.typeColors[0] +', ' + this.typeColors[1] + ')';
-        background?.style.setProperty('background-image', gradient);
-      } else {
-        background?.style.setProperty('background-color', this.typeColors[0]);
-      }
     });
   }
 }
